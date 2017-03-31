@@ -8,7 +8,7 @@ function isArrayInsanceof(param) {
 }
 
 function isArrayConstructor(param) {
-  return param && param.constructor === Array; //
+  return param && param.constructor === Array;
 }
 
 //range function
@@ -24,7 +24,7 @@ function range(left, right, step = 1) {
     left = 0;
   }
   if (trueParam) {
-    for (var i = left; i < right; i+=step) {
+    for (var i = left; i < right; i += step) {
       resultArr.push(i);
     }
   }
@@ -103,24 +103,26 @@ function uniqueFilter(arr) {
 //last function
 function lastLen(arr) {
   if (arr instanceof Array) {
-    return arr[arr.length-1];
+    return arr[arr.length - 1];
   }
 }
 
 //last execute function
 function lastExecuteLen(arr, count = 1) {
-  var resultArr = arr;
+  var resultArr = [];
   if (arr instanceof Array) {
-    if (arr.length > count) {
-      resultArr.length = arr.length-count;
+    resultArr = arr.slice();
+    if (resultArr.length > count) {
+      resultArr.length -= count;
     }
   }
   return resultArr;
 }
 
 function lastExecuteSplit(arr, count = 1) {
-  var resultArr = arr;
+  var resultArr = [];
   if (arr instanceof Array) {
+    resultArr = arr.slice();
     if (arr.length > count) {
       resultArr.splice(-count);
     }
