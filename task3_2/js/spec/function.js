@@ -32,8 +32,44 @@ describe("Test isArray", function() {
 });
 
 describe("Test range", function() {
-  it("test 9, 10, 2", function() {
-    expect(range(9, 10, 2)).toEqual([9]);
+  it("test 10", function() {
+    expect(range(10)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+  it("test (-10, -20, -5)", function() {
+    expect(range(-10, -20, -5)).toEqual([-10, -15]);
+  });
+  it("test (-20, -10, -5)", function() {
+    expect(range(-20, -10, -5)).toEqual([]);
+  });
+  it("test (-2, -5)", function() {
+    expect(range(-2, -5)).toEqual([]);
+  });
+  it("test (-5, -2, -2)", function() {
+    expect(range(-5, -2, -2)).toEqual([]);
+  });
+  it("test (-5, null, 2)", function() {
+    expect(range(-5, null, 2)).toEqual([]);
+  });
+  it("test (-5, null, -2)", function() {
+    expect(range(-5, null, -2)).toEqual([0, -2, -4]);
+  });
+  it("test (-5, -2)", function() {
+    expect(range(-5, -2)).toEqual([-5, -4, -3]);
+  });
+  it("test (-5, -2, 2)", function() {
+    expect(range(-5, -2, 2)).toEqual([-5, -3]);
+  });
+  it("test 10, null", function() {
+    expect(range(10, null)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+  it("test 1, 10", function() {
+    expect(range(1, 10)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+  it("test (1, 10, 3)", function() {
+    expect(range(1, 10, 3)).toEqual([1, 4, 7]);
+  });
+  it("test 10, null, 3", function() {
+    expect(range(10, null, 3)).toEqual([0, 3, 6, 9]);
   });
   it("test 1, 10, -2", function() {
     expect(range(1, 10, -2)).toEqual([]);
@@ -59,8 +95,8 @@ describe("Test range", function() {
   it("test 10, 1", function() {
     expect(range(10, 1)).toEqual([]);
   });
-  it("test -10, -1", function() {
-    expect(range(-10, -6)).toEqual([-10, -9, -8, -7]);
+  it("test -5, 0, 1", function() {
+    expect(range(-5, 0, 1)).toEqual([-5, -4, -3, -2, -1]);
   });
   it("test 5", function() {
     expect(range(5)).toEqual([0, 1, 2, 3, 4]);

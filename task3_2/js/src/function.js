@@ -14,18 +14,24 @@ function isArrayConstructor(param) {
 //range function
 function range(left, right, step = 1) {
   var resultArr = [];
-  var trueParam = true;
-  if (arguments.length >= 3) {
-    if (!((left < right && 0 < step) || (left > right && 0 > step))) {
-      trueParam = false;
-    }
-  } else if (arguments.length == 1) {
-    right = left;
-    left = 0;
+  var start = 0;
+  var end = left;
+  if (right || right == 0) {
+    start = left;
+    end = right;
   }
-  if (trueParam) {
-    for (var i = left; i < right; i += step) {
-      resultArr.push(i);
+  var lenArr = 0;
+  if (end > start && 0 < step) {
+    lenArr = (end - start) / step;
+  } else if (end < start && 0 > step) {
+    lenArr = (start - end) / step;
+  }
+  if (lenArr) {
+    var j = 1;
+    resultArr[0] = start;
+    while (j < Math.abs(lenArr)) {
+      resultArr[j] = resultArr[j - 1] + step;
+      j++;
     }
   }
   return resultArr;
@@ -67,8 +73,8 @@ function sumFor(arr) {
 
 function sumReduce(arr) {
   return arr.reduce(
-    function(sum, current) {
-      return sum + current;
+    function(previous, next) {
+      return previous + next;
     }, 0);
 }
 
