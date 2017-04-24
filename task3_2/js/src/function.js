@@ -12,29 +12,21 @@ function isArrayConstructor(param) {
 }
 
 //range function
-function range(left, right, step = 1) {
-  var resultArr = [];
-  var start = 0;
-  var end = left;
-  if (right || right == 0) {
-    start = left;
-    end = right;
-  }
-  var lenArr = 0;
-  if (end > start && 0 < step) {
-    lenArr = (end - start) / step;
-  } else if (end < start && 0 > step) {
-    lenArr = (start - end) / step;
-  }
-  if (lenArr) {
-    var j = 1;
-    resultArr[0] = start;
-    while (j < Math.abs(lenArr)) {
-      resultArr[j] = resultArr[j - 1] + step;
-      j++;
+function range(start, stop, step) {
+  if (stop == null) {
+      stop = start || 0;
+      start = 0;
     }
-  }
-  return resultArr;
+    step = step || 1;
+
+    var length = Math.max(Math.ceil((stop - start) / step), 0);
+    var range = Array(length);
+
+    for (var idx = 0; idx < length; idx++, start += step) {
+      range[idx] = start;
+    }
+
+    return range;
 }
 
 //compact function
@@ -130,7 +122,7 @@ function lastExecuteSplit(arr, count = 1) {
   if (arr instanceof Array) {
     resultArr = arr.slice();
     if (arr.length > count) {
-      resultArr.splice(-count);
+      resultArr = arr.slice(0, -count);
     }
   }
   return resultArr;
